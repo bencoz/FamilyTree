@@ -31,12 +31,16 @@ def create_nested_json(lst, curr_level=0):
     if next_item_level > curr_level:
         # This is a child. Find all children i.e run until curr_level < next_item_level
         pos = 1
+        found = False
         for i in range(2, len(lst)):
             if next_item_level == lst[i]['level']:
+                found = True
                 nested_json['children'].append(create_nested_json(lst[pos:i], curr_level + 1))
                 pos = i
                 if pos == len(lst) - 1 and lst[pos:i+1] is not None:
                     nested_json['children'].append(create_nested_json(lst[pos:i+1], curr_level + 1))
+        if not found:
+            nested_json['children'].append(create_nested_json(lst[pos:len(lst)], curr_level + 1))
     return nested_json
 
 
@@ -69,6 +73,6 @@ def markdown_to_json(markdown_file):
 
 
 # Example usage
-markdown_file = 'somedoc.md'
+markdown_file = 'test.md'
 json_data = markdown_to_json(markdown_file)
 print(json_data)
