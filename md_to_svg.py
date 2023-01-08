@@ -3,7 +3,7 @@ import numpy as np
 
 from xml.etree import ElementTree as ET
 
-node_width = 150
+node_width = 200
 node_height = 75
 child_spacing = 500
 child_y_offset = 250
@@ -219,7 +219,6 @@ def markdown_to_json(markdown_file):
     return root
 
 
-# Example usage
-markdown_file = 'family_tree.md'
+markdown_file = './family_tree.md'
 family_dict = markdown_to_json(markdown_file)
-generate_svg(family_dict, "tree.svg")
+generate_svg(family_dict, "family_tree.svg")
